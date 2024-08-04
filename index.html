@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
   <title>My LIFF App</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,7 +12,7 @@
   <p id="version"><b>Version:</b> </p>
   <p id="isInClient"><b>isInClient:</b> </p>
   <p id="accessToken"><b>AccessToken:</b> </p>
-  <img id="pictureUrl">
+  <img id="pictureUrl" src="">
   <p id="userId"><b>userId:</b> </p>
   <p id="displayName"><b>displayName:</b> </p>
   <p id="statusMessage"><b>statusMessage:</b> </p>
@@ -34,22 +35,23 @@
   <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
   <button id="btnClose" onclick="closed()">Close</button>
+  <button id="btnSubmit" onclick="submitToGoogleForm()">Submit to Google Form</button>
 
   <script src="js/vconsole.min.js"></script>
   <script>
-    var vConsole = new VConsole()
-    console.log("Hello World!")
+    var vConsole = new VConsole();
+    console.log("Hello World!");
   </script>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     function createUniversalLink() {
-      const link1 = liff.permanentLink.createUrl()
-      document.getElementById("universalLink1").append(link1)
+      const link1 = liff.permanentLink.createUrl();
+      document.getElementById("universalLink1").append(link1);
 
-      liff.permanentLink.setExtraQueryParam('param=9')
-      const link2 = liff.permanentLink.createUrl()
-      document.getElementById("universalLink2").append(link2)
+      liff.permanentLink.setExtraQueryParam('param=9');
+      const link2 = liff.permanentLink.createUrl();
+      document.getElementById("universalLink2").append(link2);
     }
 
     async function shareMsg() {
@@ -58,36 +60,36 @@
           type: "text",
           text: "This message was sent by ShareTargetPicker"
         }
-      ])
+      ]);
     }
 
     function logOut() {
-      liff.logout()
-      window.location.reload()
+      liff.logout();
+      window.location.reload();
     }
 
     function closed() {
-      liff.closeWindow()
+      liff.closeWindow();
     }
 
     async function scanCode() {
-      const result = await liff.scanCode()
-      document.getElementById("scanCode").append(result.value)
+      const result = await liff.scanCode();
+      document.getElementById("scanCode").append(result.value);
     }
-    
+
     function openWindow() {
       liff.openWindow({
         url: "https://line.me",
         external: true
-      })
+      });
     }
 
     async function getFriendship() {
-      const friend = await liff.getFriendship()
-      document.getElementById("friendship").append(friend.friendFlag)
+      const friend = await liff.getFriendship();
+      document.getElementById("friendship").append(friend.friendFlag);
       if (!friend.friendFlag) {
         if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
-          window.location = "https://line.me/R/ti/p/@YOUR-BOT-ID"
+          window.location = "https://line.me/R/ti/p/@YOUR-BOT-ID";
         }
       }
     }
@@ -100,61 +102,73 @@
             "stickerId": 1,
             "packageId": 1
           }
-        ])
-        alert("Message sent")
+        ]);
+        alert("Message sent");
       }
     }
 
     function getContext() {
       if (liff.getContext() != null) {
-        document.getElementById("type").append(liff.getContext().type)
-        document.getElementById("viewType").append(liff.getContext().viewType)
-        document.getElementById("utouId").append(liff.getContext().utouId)
-        document.getElementById("roomId").append(liff.getContext().roomId)
-        document.getElementById("groupId").append(liff.getContext().groupId)
+        document.getElementById("type").append(liff.getContext().type);
+        document.getElementById("viewType").append(liff.getContext().viewType);
+        document.getElementById("utouId").append(liff.getContext().utouId);
+        document.getElementById("roomId").append(liff.getContext().roomId);
+        document.getElementById("groupId").append(liff.getContext().groupId);
       }
     }
 
     async function getUserProfile() {
-      const profile = await liff.getProfile()
-      document.getElementById("pictureUrl").src = profile.pictureUrl
-      document.getElementById("userId").append(profile.userId)
-      document.getElementById("statusMessage").append(profile.statusMessage)
-      document.getElementById("displayName").append(profile.displayName)
-      document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+      const profile = await liff.getProfile();
+      document.getElementById("pictureUrl").src = profile.pictureUrl;
+      document.getElementById("userId").append(profile.userId);
+      document.getElementById("statusMessage").append(profile.statusMessage);
+      document.getElementById("displayName").append(profile.displayName);
+      document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email);
     }
-    
+
     function getEnvironment() {
-      document.getElementById("os").append(liff.getOS())
-      document.getElementById("language").append(liff.getLanguage())
-      document.getElementById("version").append(liff.getVersion())
-      document.getElementById("accessToken").append(liff.getAccessToken())
-      document.getElementById("isInClient").append(liff.isInClient())
+      document.getElementById("os").append(liff.getOS());
+      document.getElementById("language").append(liff.getLanguage());
+      document.getElementById("version").append(liff.getVersion());
+      document.getElementById("accessToken").append(liff.getAccessToken());
+      document.getElementById("isInClient").append(liff.isInClient());
       if (liff.isInClient()) {
-        document.getElementById("btnLogOut").style.display = "none"
+        document.getElementById("btnLogOut").style.display = "none";
       } else {
-        document.getElementById("btnMsg").style.display = "none"
-        document.getElementById("btnScanCode").style.display = "none"
-        document.getElementById("btnClose").style.display = "none"
+        document.getElementById("btnMsg").style.display = "none";
+        document.getElementById("btnScanCode").style.display = "none";
+        document.getElementById("btnClose").style.display = "none";
       }
+    }
+
+    async function submitToGoogleForm() {
+      const profile = await liff.getProfile();
+      const userId = profile.userId;
+      const displayName = profile.displayName;
+      const pictureUrl = profile.pictureUrl;
+
+      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc-Q93eDbcskoxIPcUFHGpLQhDBdti10z0Ty2ptaBnBo1cuQQ/viewform";
+      const url = `${formUrl}?usp=pp_url&entry.2128689041=${userId}&entry.105459978=${displayName}&entry.1218393752=${pictureUrl}`;
+      
+      window.location.href = url;
     }
 
     async function main() {
       liff.ready.then(() => {
-        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn());
         if (liff.isLoggedIn()) {
-          getEnvironment()
-          getUserProfile()
-          getContext()
-          getFriendship()
-          createUniversalLink()
+          getEnvironment();
+          getUserProfile();
+          getContext();
+          getFriendship();
+          createUniversalLink();
         } else {
-          liff.login()
+          liff.login();
         }
-      })
-      await liff.init({ liffId: "2006013275-qgvBWBEj" })
+      });
+      await liff.init({ liffId: "2006013275-qgvBWBEj" });
     }
-    main()
+    main();
   </script>
 </body>
 </html>
