@@ -5,11 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
   <title>My LIFF App</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Style for the loading image */
+    #loading {
+      display: none; /* Hidden by default */
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      z-index: 2; /* Ensure it's above other elements */
+      text-align: center;
+    }
+    #loading img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 <body>
+  <div id="loading">
+    <img src="https://s10.gifyu.com/images/S5Os0.gif" alt="Loading...">
+  </div>
+
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     async function redirectToGoogleForm() {
+      document.getElementById('loading').style.display = 'block'; // Show the loading image
+
       await liff.init({ liffId: "2006013275-qgvBWBEj" });
 
       if (!liff.isLoggedIn()) {
