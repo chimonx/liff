@@ -15,21 +15,19 @@
       const profile = await liff.getProfile();
       const userId = profile.userId;
       const displayName = profile.displayName;
-      const pictureUrl = profile.pictureUrl;
+      const pictureUrl = encodeURIComponent(profile.pictureUrl); // Ensure URL encoding for pictureUrl
 
       const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc-Q93eDbcskoxIPcUFHGpLQhDBdti10z0Ty2ptaBnBo1cuQQ/viewform";
       const url = `${formUrl}?usp=pp_url&entry.2128689041=${userId}&entry.105459978=${displayName}&entry.1218393752=${pictureUrl}`;
-      
+
       window.location.href = url;
     }
 
     async function main() {
-      liff.ready.then(() => {
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        }
-      });
       await liff.init({ liffId: "2006013275-qgvBWBEj" });
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
     }
     main();
   </script>
