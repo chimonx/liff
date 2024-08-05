@@ -50,23 +50,13 @@
         const pictureUrl = encodeURIComponent(profile.pictureUrl); // Ensure URL encoding for pictureUrl
 
         const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc-Q93eDbcskoxIPcUFHGpLQhDBdti10z0Ty2ptaBnBo1cuQQ/viewform";
-        const url = `${formUrl}?usp=pp_url&entry.2128689041=${userId}&entry.1218393752=${accessToken}&entry.105459978=${pictureUrl}&entry.544332031=${displayName}`;
+        const url = ${formUrl}?usp=pp_url&entry.2128689041=${userId}&entry.1218393752=${accessToken}&entry.105459978=${pictureUrl}&entry.544332031=${displayName};
 
         window.location.href = url;
       }
     }
 
-    async function getFriendship() {
-      try {
-        const friendship = await liff.getFriendship();
-        console.log(friendship.friendFlag);
-      } catch (error) {
-        console.error('Error getting friendship status: ', error);
-      }
-    }
-
     redirectToGoogleForm();
-    getFriendship();
   </script>
 </body>
 </html>
