@@ -52,7 +52,7 @@
         const friend = await liff.getFriendship();
         if (!friend.friendFlag) {
           document.getElementById('loading').style.display = 'none'; // Hide the loading image
-          if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
+          if (confirm("คุณยังไม่ได้เพิ่ม สโมสรนักศึกษา เป็นเพื่อน จะเพิ่มเลยไหม?")) {
             window.location = "https://line.me/R/ti/p/@125jhxql";
           } else {
             liff.closeWindow();
