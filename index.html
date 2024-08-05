@@ -54,8 +54,10 @@
           document.getElementById('loading').style.display = 'none'; // Hide the loading image
           if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
             window.location = "https://line.me/R/ti/p/@125jhxql";
-            return;
+          } else {
+            liff.closeWindow();
           }
+          return;
         }
 
         const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc-Q93eDbcskoxIPcUFHGpLQhDBdti10z0Ty2ptaBnBo1cuQQ/viewform";
