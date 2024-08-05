@@ -33,6 +33,8 @@
     <img src="https://s10.gifyu.com/images/S5Os0.gif" alt="Loading...">
   </div>
 
+  <button onclick="addFriend()">Add Friend</button>
+
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     async function redirectToGoogleForm() {
@@ -56,7 +58,28 @@
       }
     }
 
-    redirectToGoogleForm();
+    async function getFriendship() {
+      const friendship = await liff.getFriendship();
+      const isFriend = friendship.friendFlag;
+
+      if (!isFriend) {
+        addFriend();
+      } else {
+        redirectToGoogleForm();
+      }
+    }
+
+    function addFriend() {
+      const addFriendUrl = "https://line.me/R/ti/p/YOUR-LINE-USER-ID";
+      window.location.href = addFriendUrl;
+    }
+
+    async function main() {
+      await liff.init({ liffId: "2006013275-qgvBWBEj" });
+      getFriendship();
+    }
+
+    main();
   </script>
 </body>
 </html>
